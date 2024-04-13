@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ccdd9339a080d140beb5519dceaa38e
+guid: 826cb1e8a2011214e94f23b28c03b261
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -55,7 +55,7 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
@@ -66,13 +66,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.9
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: IdleAim
+      name: Agonizing
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 349
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -81,12 +81,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000

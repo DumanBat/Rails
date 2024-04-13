@@ -32,14 +32,13 @@ namespace SquareDino.Behaviour
 
             if (distanceToTarget < MinimumRequiredDistance)
             {
+                _player.TargetWaypoint.WaypointReached?.Invoke();
                 _player.IsActive = !_player.TargetWaypoint.IsEnd;
                 _player.IsWaypointReached = true;
             }
             else
                 _moveable.Move(targetPosition);
         }
-
-        public void FixedTick() { }
         public void OnEnter()
         {
             _navMeshAgent.enabled = true;
@@ -52,5 +51,7 @@ namespace SquareDino.Behaviour
             _navMeshAgent.enabled = false;
             _animator.SetBool(WalkHash, false);
         }
+
+        public void FixedTick() { }
     }
 }

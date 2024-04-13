@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 742532f43e904a3478a04248f2f691eb, type: 2}
   _playerPrefab: {fileID: 1703562835, guid: 184861ab3d7aff2439d1eab2936ee424, type: 3}
+  _cameraFollow: {fileID: 0}

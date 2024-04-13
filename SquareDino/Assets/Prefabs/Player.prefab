@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 9124278397336399213}
   - component: {fileID: 1703562835}
   - component: {fileID: 1703562834}
+  - component: {fileID: 1819936218982805232}
   - component: {fileID: 1703562832}
-  - component: {fileID: 4385621525019549607}
   - component: {fileID: 7250553441736129579}
+  - component: {fileID: 8160287479555376391}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -82,6 +83,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 3225376484827981104}
+  _weaponHolder: {fileID: 1226915467927328698}
+  _weaponPrefab: {fileID: 2000330480836967495, guid: e85f56a6eac43f445a7280e05fce9767,
+    type: 3}
 --- !u!114 &1703562834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +96,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da75093e104b00544856ed286824bc64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1819936218982805232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030322428237561810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ad850bdc41e3642ac90d875d13803b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &1703562832
@@ -116,20 +132,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &4385621525019549607
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5030322428237561810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &7250553441736129579
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -144,8 +146,52 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &8160287479555376391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030322428237561810}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!1 &9079566751264019780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226915467927328698}
+  m_Layer: 0
+  m_Name: WeaponHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226915467927328698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9079566751264019780}
+  m_LocalRotation: {x: -0.47797054, y: 0.21542639, z: -0.4946068, w: 0.6931809}
+  m_LocalPosition: {x: 0.0935, y: 0.0221, z: -0.0285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3287238705214298696}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -26.714, y: 59.73, z: -86.546}
 --- !u!1001 &3283182543930162132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,6 +267,12 @@ PrefabInstance:
 --- !u!95 &3225376484827981104 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95389170962898660, guid: f11fc98cf1e8d5547a9b2ec85cc9c664,
+    type: 3}
+  m_PrefabInstance: {fileID: 3283182543930162132}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3287238705214298696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4128732659769756, guid: f11fc98cf1e8d5547a9b2ec85cc9c664,
     type: 3}
   m_PrefabInstance: {fileID: 3283182543930162132}
   m_PrefabAsset: {fileID: 0}

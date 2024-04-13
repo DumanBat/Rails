@@ -7,10 +7,16 @@ namespace SquareDino.Gameplay
 {
     public class GameplayMediator : MonoBehaviour
     {
+        [Header("General")]
         [SerializeField]
         private GameConfig _config;
         [SerializeField]
         private PlayerController _playerPrefab;
+
+        [Space]
+        [Header("References")]
+        [SerializeField]
+        private CameraFollow _cameraFollow;
 
         private PlayerController _player;
         private Level _currentLevel;
@@ -19,7 +25,7 @@ namespace SquareDino.Gameplay
         {
             _currentLevel = Instantiate(GetRandomLevel());
             _player = Instantiate(_playerPrefab);
-            _player.Init(_config, _currentLevel.Nodes);
+            _player.Init(_config, _cameraFollow, _currentLevel.Nodes);
         }
 
         private Level GetRandomLevel()

@@ -12,11 +12,18 @@ namespace SquareDino.Player
     {
         [SerializeField]
         private Animator _animator;
+        [SerializeField]
+        private Transform _weaponHolder;
+        [SerializeField]
+        private Weapon _weaponPrefab;
 
         private GameConfig _config;
+        private CameraFollow _camera;
         private StateMachine _stateMachine;
+        private Weapon _weapon;
         private float _moveSpeed;
         private IMoveable _moveable;
+        private IShootable _shootable;
 
         private IState _idle;
 
@@ -37,37 +44,34 @@ namespace SquareDino.Player
         {
             _stateMachine = new StateMachine();
             _moveable = GetComponent<IMoveable>();
+            _shootable = GetComponent<IShootable>();
+            _weapon = Instantiate(_weaponPrefab, _weaponHolder);
         }
 
         private void Update()
         {
             _stateMachine.Tick();
-            if (IsActive)
-                return;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                IsActive = true;
-                IsGameStarted = true;
-            }
         }
 
-        public void Init(GameConfig config, List<WaypointNode> path)
+        public void Init(GameConfig config, CameraFollow camera, List<WaypointNode> path)
         {
             _config = config;
+            _camera = camera;
             _path = path;
             _moveSpeed = config.MoveSpeed;
 
             _moveable.GetNavMeshAgent().speed = _moveSpeed;
+            _shootable.Init(_weapon, _camera.MainCamera);
+            _camera.Init(transform);
             InitStates();
         }
 
         private void InitStates()
         {
-            _idle = new IdleState(Animator);
+            _idle = new IdleState(this, Animator);
             var searchForTarget = new SearchForTargetState(this, _path);
             var moveToTarget = new MoveToTargetState(this, _moveable);
-            var attack = new AttackState(this, Animator);
+            var attack = new AttackState(this, Animator, _camera, _shootable);
 
             At(_idle, searchForTarget, () => IsGameStarted && IsActive);
             At(searchForTarget, moveToTarget, () => HasNextTarget);
