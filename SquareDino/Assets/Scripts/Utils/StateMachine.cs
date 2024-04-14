@@ -55,7 +55,6 @@ namespace SquareDino.Utils
             _currentState?.OnExit();
             _currentState = state;
 
-            Debug.LogWarning(_currentState.State);
             _transitions.TryGetValue(_currentState.State, out _currentTransitions);
             if (_currentTransitions == null)
                 _currentTransitions = EmptyTransitions;

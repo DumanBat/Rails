@@ -2122,6 +2122,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1931762446809891404, guid: 6bbe5900f10a40844a82ff26836069dd,
+        type: 3}
+      propertyPath: _heightOffset
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768862911104772203, guid: 6bbe5900f10a40844a82ff26836069dd,
+        type: 3}
+      propertyPath: _heightOffset
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 3774492511622954089, guid: 6bbe5900f10a40844a82ff26836069dd,
         type: 3}
       propertyPath: m_Name
@@ -2156,6 +2166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971157407997031654, guid: 6bbe5900f10a40844a82ff26836069dd,
+        type: 3}
+      propertyPath: _heightOffset
+      value: 0.16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bbe5900f10a40844a82ff26836069dd, type: 3}
