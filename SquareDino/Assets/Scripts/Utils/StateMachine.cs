@@ -26,6 +26,7 @@ namespace SquareDino.Utils
             MoveToTarget,
             SearchForTarget,
             Attack,
+            FinalReached,
             Death
         }
 

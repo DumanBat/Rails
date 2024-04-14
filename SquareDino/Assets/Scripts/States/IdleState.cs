@@ -20,18 +20,6 @@ namespace SquareDino.Behaviour
             _animator = animator;
         }
 
-        public void Tick()
-        {
-            if (_player.IsActive)
-                return;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                _player.IsActive = true;
-                _player.IsGameStarted = true;
-            }
-        }
-
         public void OnEnter()
         {
             _animator.SetBool(IdleHash, true);
@@ -42,6 +30,7 @@ namespace SquareDino.Behaviour
             _animator.SetBool(IdleHash, false);
         }
 
+        public void Tick() { }
         public void FixedTick() { }
     }
 }

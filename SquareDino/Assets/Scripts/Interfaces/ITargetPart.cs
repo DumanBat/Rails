@@ -7,6 +7,6 @@ namespace SquareDino.Behaviour
     public interface ITargetPart
     {
         public ITarget OriginTarget { get; }
-        public void SetHitData(Vector3 hitPos);
+        public void SetHitData(float force);
     }
 }

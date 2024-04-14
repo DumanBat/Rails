@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SquareDino.Gameplay
 {
-    public class Enemy : MonoBehaviour, ITarget
+    public class HumanoidEnemy : MonoBehaviour, ITarget
     {
         private static readonly int Damaged = Animator.StringToHash("Damaged");
 

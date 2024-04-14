@@ -26,9 +26,9 @@ namespace SquareDino.Behaviour
             _originTarget = target;
         }
 
-        public void SetHitData(Vector3 hitPos)
+        public void SetHitData(float force)
         {
-            _originRagdoll.OnBodyPartHit?.Invoke(this);
+            _originRagdoll.OnBodyPartHit?.Invoke(this, force);
         }
     }
 }

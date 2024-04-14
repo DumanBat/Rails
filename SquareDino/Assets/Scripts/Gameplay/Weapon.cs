@@ -20,6 +20,8 @@ namespace SquareDino.Gameplay
         private float _damage;
         [SerializeField]
         private float _bulletSpeed;
+        [SerializeField]
+        private float _bulletForce;
 
         private ObjectPool<Bullet> _bulletPool;
 
@@ -33,7 +35,7 @@ namespace SquareDino.Gameplay
             _bulletPool = new ObjectPool<Bullet>(() =>
             {
                 var bullet = Instantiate(_bulletPrefab);
-                bullet.Init(_bulletPool, _damage, _bulletSpeed);
+                bullet.Init(_bulletPool, _damage, _bulletSpeed, _bulletForce);
                 return bullet;
             },
             bullet =>

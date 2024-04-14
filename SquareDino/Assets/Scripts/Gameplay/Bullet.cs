@@ -14,6 +14,7 @@ namespace SquareDino.Gameplay
         private ObjectPool<Bullet> _originPool;
         private float _damage;
         private float _bulletSpeed;
+        private float _bulletForce;
         private Vector3 _direction;
         private bool _isActive;
 
@@ -32,11 +33,12 @@ namespace SquareDino.Gameplay
             transform.Translate(_direction * _bulletSpeed * Time.deltaTime);
         }
 
-        public void Init(ObjectPool<Bullet> originPool, float damage, float speed)
+        public void Init(ObjectPool<Bullet> originPool, float damage, float speed, float force)
         {
             _originPool = originPool;
             _damage = damage;
             _bulletSpeed = speed;
+            _bulletForce = force;
         }
 
         public void Launch(Vector3 direction)
@@ -62,7 +64,7 @@ namespace SquareDino.Gameplay
             var targetPart = other.GetComponent<ITargetPart>();
             if (targetPart != null)
             {
-                targetPart.SetHitData(transform.position);
+                targetPart.SetHitData(_bulletForce);
                 targetPart.OriginTarget.Health.TakeDamage(_damage);
             }
             Unload();

@@ -16,8 +16,9 @@ namespace SquareDino.Behaviour
 
         private ITarget _originTarget;
         private BodyPart _lastHitBodyPart;
+        private float _lastHitForce;
 
-        public Action<BodyPart> OnBodyPartHit;
+        public Action<BodyPart, float> OnBodyPartHit;
 
         public void Awake()
         {
@@ -56,12 +57,13 @@ namespace SquareDino.Behaviour
         public void ApplyForce(Vector3 forceOriginPosition)
         {
             var direction = _lastHitBodyPart.transform.position - forceOriginPosition;
-            _lastHitBodyPart.Rigidbody.AddForce(direction * 5f, ForceMode.Impulse);
+            _lastHitBodyPart.Rigidbody.AddForce(direction * _lastHitForce, ForceMode.Impulse);
         }
 
-        private void SetLastHitBodyPart(BodyPart bodyPart)
+        private void SetLastHitBodyPart(BodyPart bodyPart, float hitForce)
         {
             _lastHitBodyPart = bodyPart;
+            _lastHitForce = hitForce;
         }
     }
 }

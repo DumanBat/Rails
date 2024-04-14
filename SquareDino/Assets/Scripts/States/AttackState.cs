@@ -20,13 +20,13 @@ namespace SquareDino.Behaviour
         private Weapon _weapon;
         private WaypointNode _currentWaypoint;
 
-        public AttackState(PlayerController player, Animator animator, CameraFollow cameraFollow, IShootable shootable)
+        public AttackState(PlayerController player, CameraFollow cameraFollow, IShootable shootable)
         {
             _shootable = shootable;
             _cameraFollow = cameraFollow;
             _mainCamera = Camera.main;
             _player = player;
-            _animator = animator;
+            _animator = player.Animator;
         }
 
         public void OnEnter()
@@ -64,7 +64,8 @@ namespace SquareDino.Behaviour
         private void LookAtCurrentTarget()
         {
             var aimTarget = _currentWaypoint.GetAimTarget();
-            _player.transform.LookAt(aimTarget);
+            var targetPostition = new Vector3(aimTarget.position.x, _player.transform.position.y, aimTarget.position.z);
+            _player.transform.LookAt(targetPostition);
         }
 
         public void FixedTick() { }

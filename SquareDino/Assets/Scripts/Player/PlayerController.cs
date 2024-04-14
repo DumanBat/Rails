@@ -29,8 +29,11 @@ namespace SquareDino.Player
 
         private List<WaypointNode> _path;
 
+        public Action OnGameEnded;
+
         public Animator Animator => _animator;
         public bool IsGameStarted { get; set; }
+        public bool IsGameEnded { get; set; }
         public bool IsActive { get; set; }
         public bool IsWaypointReached { get; set; }
         public bool IsNoMoreWaypoints { get; set; }
@@ -66,19 +69,29 @@ namespace SquareDino.Player
             InitStates();
         }
 
+        public void Enable()
+        {
+            IsActive = true;
+            IsGameStarted = true;
+        }
+
         private void InitStates()
         {
             _idle = new IdleState(this, Animator);
             var searchForTarget = new SearchForTargetState(this, _path);
             var moveToTarget = new MoveToTargetState(this, _moveable);
-            var attack = new AttackState(this, Animator, _camera, _shootable);
+            var attack = new AttackState(this, _camera, _shootable);
+            var finalReached = new FinalReachedState(this);
 
             At(_idle, searchForTarget, () => IsGameStarted && IsActive);
             At(searchForTarget, moveToTarget, () => HasNextTarget);
+
             At(moveToTarget, attack, () => IsWaypointReached && IsTargetShootingPoint);
             At(moveToTarget, searchForTarget, () => IsWaypointReached && !IsTargetShootingPoint && !IsNoMoreWaypoints);
+            At(moveToTarget, finalReached, () => IsWaypointReached && IsNoMoreWaypoints && !IsTargetShootingPoint);
+
             At(attack, searchForTarget, () => IsAttackEnded && !IsNoMoreWaypoints);
-            At(moveToTarget, _idle, () => IsWaypointReached && IsNoMoreWaypoints);
+            At(attack, finalReached, () => IsAttackEnded && IsNoMoreWaypoints);
             At(attack, _idle, () => IsAttackEnded && IsNoMoreWaypoints);
 
             void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);

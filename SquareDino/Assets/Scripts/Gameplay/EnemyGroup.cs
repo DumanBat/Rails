@@ -10,7 +10,7 @@ namespace SquareDino.Gameplay
         [SerializeField]
         private Transform _aimTarget;
         [SerializeField]
-        private List<Enemy> _enemies = new List<Enemy>();
+        private List<HumanoidEnemy> _enemies = new List<HumanoidEnemy>();
 
         public Transform AimTarget => _aimTarget;
 

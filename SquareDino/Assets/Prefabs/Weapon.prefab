@@ -54,6 +54,7 @@ MonoBehaviour:
   _bulletPoolSize: 5
   _damage: 1
   _bulletSpeed: 40
+  _bulletForce: 5
 --- !u!82 &1315405029809000160
 AudioSource:
   m_ObjectHideFlags: 0
