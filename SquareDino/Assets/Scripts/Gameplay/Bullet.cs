@@ -59,12 +59,13 @@ namespace SquareDino.Gameplay
 
         public void OnTriggerEnter(Collider other)
         {
-            Unload();
-            var target = other.GetComponent<ITarget>();
-            if (target != null)
+            var targetPart = other.GetComponent<ITargetPart>();
+            if (targetPart != null)
             {
-                target.Health.TakeDamage(_damage);
+                targetPart.SetHitData(transform.position);
+                targetPart.OriginTarget.Health.TakeDamage(_damage);
             }
+            Unload();
         }
     }
 }

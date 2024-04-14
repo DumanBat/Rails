@@ -6,10 +6,8 @@ using UnityEngine;
 
 namespace SquareDino.Gameplay
 {
-    [RequireComponent(typeof(Collider))]
     public class Enemy : MonoBehaviour, ITarget
     {
-        private static readonly int Dead = Animator.StringToHash("Dead");
         private static readonly int Damaged = Animator.StringToHash("Damaged");
 
         [SerializeField]
@@ -18,7 +16,8 @@ namespace SquareDino.Gameplay
         private HealthBehaviourView _healthView;
 
         private IHealth _health;
-        private Collider _collider;
+        private IRagdoll _ragdoll;
+        private Vector3 _lastHitPos;
 
         public Action OnKilled;
 
@@ -26,9 +25,11 @@ namespace SquareDino.Gameplay
 
         private void Awake()
         {
-            _collider = GetComponent<Collider>();
             _health = GetComponent<IHealth>();
+            _ragdoll = GetComponent<IRagdoll>();
+
             _healthView.SetActive(false);
+            _ragdoll.TurnOff();
 
             _health.OnDeath += Kill;
             _health.OnDamaged += (damage) => TakeDamage();
@@ -38,8 +39,7 @@ namespace SquareDino.Gameplay
 
         public void SetActive(bool isActive)
         {
-            _collider.enabled = isActive;
-            _healthView.SetActive(true);
+            _healthView.SetActive(isActive);
         }
 
         private void TakeDamage()
@@ -55,8 +55,9 @@ namespace SquareDino.Gameplay
         private void Kill()
         {
             SetActive(false);
-            _animator.SetTrigger(Dead);
-            _healthView.SetActive(false);
+            _animator.enabled = false;
+            _ragdoll.TurnOn();
+            _ragdoll.ApplyForce(_lastHitPos);
             OnKilled?.Invoke();
         }
     }
